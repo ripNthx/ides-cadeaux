@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Homme - Yves Saint Laurent</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2f2f30;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    .product-details {
+      display: flex;
+      justify-content: center;
+      margin: 300px 500px;
+    }
+
+    .product-image-container {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .thumbnails {
+      display: flex;
+      flex-direction: column;
+      margin-right: 20px;
+      margin-top: 40px;
+      gap: 40px; /* Ajoute un espacement entre les images */
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .thumbnail:hover {
+      opacity: 1;
+    }
+
+    .product-image {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-image img {
+      width: 100%;
+      max-width: 400px;
+      transition: opacity 0.5s ease-in-out; /* Effet de fondu */
+      opacity: 1;
+      border-radius: 15px;
+    }
+
+    .product-info {
+      flex: 2;
+      padding: 20px;
+    }
+
+    .product-info h2 {
+      color: #333;
+      font-size: 36px;
+    }
+
+    .product-info p {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .price {
+      font-size: 24px;
+      color: #2f2f30;
+      font-weight: bold;
+    }
+
+    .buy-button {
+      padding: 15px 30px;
+      background-color: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .buy-button:hover {
+      background-color: black;
+    }
+
+    .back-button {
+      padding: 15px 30px;
+      background-color: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      margin-top: 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
+    }
+        
+    .back-button:hover {
+      background-color: #444;
+    }
+
+    .selected-thumbnail {
+      border: 3px solid black; /* Applique une bordure noire sur l'image sélectionnée */
+    }
+
+  </style>
+</head>
+<body>
+
+  <section class="product-details">
+    <div class="product-image-container">
+      <div class="thumbnails">
+        <img src="l'homme.avif" alt="Image 1" class="thumbnail" onclick="changeImage('l\'homme.avif', this)">
+        <img src="l'homme2.avif" alt="Image 2" class="thumbnail" onclick="changeImage('l\'homme2.avif', this)">
+        <img src="l'homme3.avif" alt="Image 3" class="thumbnail" onclick="changeImage('l\'homme3.avif', this)">
+      </div>
+      <div class="product-image">
+        <img src="l'homme.avif" alt="Parfum L'Homme de Yves Saint Laurent" id="mainImage">
+      </div>
+    </div>
+    <div class="product-info">
+      <h2>Parfum L'Homme</h2>
+      <p>Un parfum sophistiqué et audacieux pour l'homme moderne. La fragrance combine des notes de gingembre, de violette et de cèdre, créant une allure raffinée et puissante.</p>
+      <p>Ce parfum incarne l'équilibre parfait entre force et douceur, idéal pour les occasions spéciales ou à porter au quotidien.</p>
+      <p class="price">76,00€</p>
+      <a href="https://www.sephora.fr/p/l-homme---eau-de-toilette-originale-150289.html" class="buy-button">Acheter</a>
+      <a href="index.html" class="back-button">Retour à l'accueil</a>
+    </div>
+  </section>
+
+  <script>
+    function changeImage(imageSrc, thumbnailElement) {
+      // Ajoute un effet de fondu pour l'image principale
+      const mainImage = document.getElementById('mainImage');
+      mainImage.style.opacity = 0; // On commence par rendre l'image invisible
+
+      setTimeout(() => {
+        // Change l'image
+        mainImage.src = imageSrc;
+
+        // Applique un effet de fondu pour réafficher l'image
+        mainImage.style.opacity = 1;
+      }, 300); // Attendre la fin du fondu (500ms)
+
+      // Enlève la bordure de toutes les miniatures
+      let thumbnails = document.querySelectorAll('.thumbnail');
+      thumbnails.forEach(thumbnail => {
+        thumbnail.classList.remove('selected-thumbnail');
+      });
+
+      // Ajoute une bordure à l'image cliquée
+      thumbnailElement.classList.add('selected-thumbnail');
+    }
+  </script>
+
+</body>
+</html>
